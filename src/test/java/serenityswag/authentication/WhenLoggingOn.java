@@ -2,11 +2,13 @@ package serenityswag.authentication;
 
 
 import net.serenitybdd.annotations.Managed;
+import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import serenityswag.authentication.actions.LoginActions;
+import serenityswag.inventory.InventoryPage;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
@@ -16,17 +18,17 @@ public class WhenLoggingOn {
     @Managed
     WebDriver driver;
 
+    @Steps
+    LoginActions login;
+
+    InventoryPage inventoryPage;
+
     @Test
     public void userCanLogOnViaTheHomePage() {
-        driver.get("https://www.saucedemo.com/");
 
-        // Login as a standart user
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        login.asAStrandsrdUser();
 
         // Should see product catalog
-        assertThat(driver.findElement(By.cssSelector(".title")).getText())
-                .isEqualTo("Products");
+        assertThat(inventoryPage.getHeading()).isEqualToIgnoringCase("Products");
     }
 }
