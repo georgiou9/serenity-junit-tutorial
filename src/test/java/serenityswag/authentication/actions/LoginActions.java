@@ -8,8 +8,8 @@ public class LoginActions extends UIInteractionSteps {
 
     //UIInteractionSteps gives the capability to add some shortcuts into the code, that make the
     // serenity code easier to read and quicker to write
-    @Step("Log in as a standard user")
-    public void asAStrandsrdUser() {
+    @Step("Log in as {0} {0}")
+    public void usingCredentials(String username, String password) {
 
         // with UIInteractionsSteps we can use other methods instead of calling the driver
         //driver.get("https://www.saucedemo.com/");
@@ -21,9 +21,9 @@ public class LoginActions extends UIInteractionSteps {
 //        driver.findElement(By.id("user-name")).sendKeys("standard_user");
 //        driver.findElement(By.id("password")).sendKeys("secret_sauce");
 //        driver.findElement(By.id("login-button")).click();
-        find(By.id("user-name")).sendKeys("standard_user");
-        $(By.id("password")).sendKeys("secret_sauce");
-        $(By.id("login-button")).click();
+        find(By.id("user-name")).sendKeys(username);
+        find(By.id("password")).sendKeys(password);
+        find(By.id("login-button")).click();
     }
 
 }

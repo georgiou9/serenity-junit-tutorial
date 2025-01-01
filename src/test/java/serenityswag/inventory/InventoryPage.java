@@ -6,6 +6,6 @@ import org.openqa.selenium.By;
 public class InventoryPage extends PageObject {
 
     public String getHeading() {
-        return $(".title").getText();
+        return find(".title").getText();
     }
 }
